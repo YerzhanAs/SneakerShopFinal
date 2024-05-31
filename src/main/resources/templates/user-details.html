@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="layout/main.html">
+<head>
+  <meta charset="UTF-8">
+  <title>User Details</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="mainFragment">
+  <div class="container mt-5">
+    <h1>Edit User Details</h1>
+    <div th:if="${param.error}">
+      <div class="alert alert-danger">
+        Error updating user. Please check the details and try again.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <form th:action="@{/admin/update-user}" th:object="${user}" method="post">
+          <input type="hidden" th:field="*{id}" /> <!-- Hidden field for passing user ID -->
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" th:field="*{fullName}" class="form-control" id="fullName" placeholder="Enter full name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="balance">Balance</label>
+            <input type="text" th:field="*{balance}" class="form-control" id="balance" placeholder="Enter balance">
+          </div>
+          <div class="form-group">
+            <label for="roles">Roles</label>
+            <select multiple id="roles" th:field="*{roles}" class="form-control">
+              <option th:each="role : ${permissions}" th:value="${role.id}" th:text="${role.authority}" th:selected="${#lists.contains(user.roles, role)}"></option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+
+    <a href="/admin/all" class="btn btn-primary mt-3">Back to Users</a>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

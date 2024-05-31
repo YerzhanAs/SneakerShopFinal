@@ -1,0 +1,93 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0; /* Increased padding for larger appearance */
+  height: 70px; /* Increased height */
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px; /* Increased side padding */
+}
+
+.logo img {
+  height: 50px; /* Larger logo */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 60px; /* Maintain or adjust gap */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px; /* Increased font size for better readability */
+}
+
+.sign-in-btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid black;
+  padding: 12px 24px; /* Larger padding */
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px; /* Larger font size for button */
+}
+
+.sign-in-btn:hover {
+  background-color: #2a83ff;
+  color: #fff;
+}
+
+footer {
+  background-color: #F8F8F8; /* Цвет фона футера */
+  color: #333; /* Цвет текста */
+  padding: 20px 0; /* Верхний и нижний отступы */
+  font-size: 14px; /* Размер шрифта */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Отступы справа и слева */
+}
+
+.footer-nav,
+.footer-social {
+  display: flex;
+  gap: 20px; /* Отступы между ссылками */
+}
+
+.footer-nav a,
+.footer-social a {
+  color: #333; /* Цвет ссылок */
+  text-decoration: none; /* Убрать подчеркивание */
+  transition: color 0.3s; /* Плавное изменение цвета */
+}
+
+.footer-nav a:hover,
+.footer-social a:hover {
+  color: #007BFF; /* Цвет ссылок при наведении */
+}
+
+.footer-text {
+  text-align: center;
+  margin-top: 20px; /* Отступ сверху */
+}
+
+.social-link i {
+  font-size: 16px; /* Или другой размер, который вы предпочитаете */
+}

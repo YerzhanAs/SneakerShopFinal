@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="layout/main.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Sneakers</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/sneakers.css}">
+</head>
+<body>
+<div layout:fragment="mainFragment">
+  <div class="container">
+    <h1 class="text-center my-5">Sneakers</h1>
+
+    <div class="row mb-4 justify-content-center">
+      <form th:action="@{/sneakers/search}" method="get" class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+          <input type="text" id="model" name="model" class="form-control" placeholder="Model name">
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <select id="category" name="category" class="form-control">
+            <option value="">Choose a category</option>
+            <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}"></option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+      </form>
+    </div>
+
+    <div class="row">
+      <div th:each="sneaker : ${sneakers}" class="col-md-4">
+        <div class="product-card">
+          <img th:src="${sneaker.imageUrl}" th:width="100" th:height="100" class="card-img-top" alt="Image of the sneaker">
+          <h3 class="product-title" th:text="${sneaker.model}">Model Name</h3>
+          <p class="product-price" th:text="'$' + ${sneaker.price}">Price</p>
+          <p class="product-description" th:text="${sneaker.brand?.name}">Brand Name</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

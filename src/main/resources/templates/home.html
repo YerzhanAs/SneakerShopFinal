@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="layout/main.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Sneaker Store</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div layout:fragment="mainFragment">
+<div class="container">
+  <div class="hero-container">
+    <div class="text-box">
+      <h1>Step Into the Future</h1>
+      <p>Discover the latest trends in sneakers with Sneaker Store</p>
+      <a th:href="@{/sneakers/search}" class="shop-now-btn">Shop Now</a>
+    </div>
+    <div class="img-box">
+      <img class="img-content" th:src="@{/image/tgktt-jordan.gif}" alt="Sneaker Image">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="collections-section">
+    <h2>Our Collections</h2>
+    <div class="collection-categories">
+      <a href="#" class="category-btn active">New Arrivals</a>
+      <a href="#" class="category-btn">Best Sellers</a>
+      <a href="#" class="category-btn">Sale</a>
+    </div>
+    <div class="products-container">
+      <div class="product-card">
+        <img th:src="@{/image/nike90.png}" alt="Sneaker Image">
+        <h3 class="product-title">Air Max 90</h3>
+        <p class="product-price">$120</p>
+        <p class="product-description">Classic style and comfort for everyday wear.</p>
+      </div>
+      <div class="product-card">
+        <img th:src="@{/image/yeeze.png}" alt="Sneaker Image">
+        <h3 class="product-title">Yeezy Boost</h3>
+        <p class="product-price">$220</p>
+        <p class="product-description">Stand out with these iconic sneakers.</p>
+      </div>
+      <div class="product-card">
+        <img th:src="@{/image/jordan.png}" alt="Sneaker Image">
+        <h3 class="product-title">Jordan 1</h3>
+        <p class="product-price">$150</p>
+        <p class="product-description">Perfect for sports and casual wear.</p>
+      </div>
+    </div>
+    <div class="view-all-btn-container">
+      <a th:href="@{/sneakers/search}" class="category-btn">View All Products</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="testimonials-section">
+    <h2>Customer Reviews</h2>
+    <div class="testimonial-cards-container">
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img th:src="@{/image/john.png}"  alt="Customer Name" class="testimonial-image">
+          <div>
+            <h3 class="customer-name">John Doe</h3>
+            <p class="customer-purchase">Purchased: Air Max 90</p>
+          </div>
+        </div>
+        <div class="testimonial-text">
+          <p>Great quality and super comfortable! Will definitely buy again.</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img th:src="@{/image/jane.png}"  alt="Customer Name" class="testimonial-image">
+          <div>
+            <h3 class="customer-name">Jane Smith</h3>
+            <p class="customer-purchase">Purchased: Yeezy Boost</p>
+          </div>
+        </div>
+        <div class="testimonial-text">
+          <p>Absolutely love these sneakers! Fast shipping and great service.</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img th:src="@{/image/alex.png}"  alt="Customer Name" class="testimonial-image">
+          <div>
+            <h3 class="customer-name">Alex Johnson</h3>
+            <p class="customer-purchase">Purchased: Jordan 1</p>
+          </div>
+        </div>
+        <div class="testimonial-text">
+          <p>Stylish and comfortable. Perfect for my daily wear.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="contact-section">
+    <h2>Have Any Questions? We're Here to Help!</h2>
+    <form>
+      <div class="contact-form">
+        <input type="text" id="firstName" name="firstName" placeholder="Your Name">
+        <input type="tel" id="phone" name="phone" placeholder="+1 (999) 999-9999">
+        <button type="submit" class="contact-btn">Contact Me</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</body>
+</html>

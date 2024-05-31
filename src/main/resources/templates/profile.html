@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="layout/main.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" th:href="@{/css/profile.css}">
+</head>
+<body>
+<div layout:fragment="mainFragment">
+<div class="header-background">
+  <header>
+    <nav class="container">
+    </nav>
+  </header>
+
+  <div class="profile-header">
+    <img th:src="@{/image/default-avatar.png}" alt="Avatar" class="avatar">
+    <h1>Hello, <span th:text="${person.fullName}"></span></h1>
+  </div>
+</div>
+
+<div class="container-profile">
+  <div class="profile-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="profile-info">
+          <p><strong>Email:</strong> <span th:text="${person.email}"></span></p>
+          <p><strong>Name:</strong> <span th:text="${person.fullName}"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

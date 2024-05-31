@@ -1,0 +1,36 @@
+
+.product-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  margin: 20px;
+  padding: 20px;
+  width: 300px; /* Adjust width as necessary */
+  text-align: center;
+}
+
+.product-card img {
+  max-width: 80%;
+  border-radius: 10px;
+  height: 200px; /* Fixed height for consistent display */
+  object-fit: cover; /* Ensure images cover the area well */
+}
+
+.product-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  color: #3078F0; /* Theme color for price */
+  margin-top: 5px;
+}
+
+.product-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 5px;
+}
