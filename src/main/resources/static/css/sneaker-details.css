@@ -1,0 +1,89 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.image-container {
+  text-align: center;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform .3s ease;
+}
+
+.image-container:hover .img-fluid {
+  transform: scale(1.05);
+}
+
+.sneaker-details {
+  padding-left: 40px;
+}
+
+.sneaker-title {
+  color: #202020;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.sneaker-price {
+  color: #555;
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+.sneaker-description {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-top: 20px;
+  color: #666;
+}
+
+.btn-primary {
+  background-color: #007bff; /* Bootstrap primary blue */
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none; /* Remove default border */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #0056b3; /* Darker blue on hover/focus */
+  color: #ffffff; /* Ensure text is white */
+}
+
+/* If buttons are links, ensure they don't underline on hover */
+.btn-primary:hover {
+  text-decoration: none; /* No underline on hover */
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .sneaker-details {
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}

@@ -31,13 +31,16 @@
 
     <div class="row">
       <div th:each="sneaker : ${sneakers}" class="col-md-4">
-        <div class="product-card">
-          <img th:src="${sneaker.imageUrl}" th:width="100" th:height="100" class="card-img-top" alt="Image of the sneaker">
-          <h3 class="product-title" th:text="${sneaker.model}">Model Name</h3>
-          <p class="product-price" th:text="'$' + ${sneaker.price}">Price</p>
-          <p class="product-description" th:text="${sneaker.brand?.name}">Brand Name</p>
-        </div>
+        <a th:href="@{/sneakers/details/{id}(id=${sneaker.id})}" class="text-decoration-none text-dark">
+          <div class="product-card">
+            <img th:src="${sneaker.imageUrl}" th:width="100" th:height="100" class="card-img-top" alt="Image of the sneaker">
+            <h3 class="product-title" th:text="${sneaker.model}">Model Name</h3>
+            <p class="product-price" th:text="'$' + ${sneaker.price}">Price</p>
+            <p class="product-description" th:text="${sneaker.brand?.name}">Brand Name</p>
+          </div>
+        </a>
       </div>
+
     </div>
   </div>
 </div>

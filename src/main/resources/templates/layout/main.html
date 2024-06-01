@@ -22,6 +22,9 @@
     <li sec:authorize="isAuthenticated()">
       <a th:href="@{/profile}" >Profile</a>
     </li>
+      <li sec:authorize="isAuthenticated()">
+        <a th:href="@{/wishlist/list}" >My WhistList</a>
+      </li>
       <li >
         <a th:href="@{/sneakers/search}">Sneakers</a>
       </li>

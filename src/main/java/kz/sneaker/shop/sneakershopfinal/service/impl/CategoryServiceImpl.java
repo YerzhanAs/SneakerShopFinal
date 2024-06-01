@@ -3,7 +3,6 @@ package kz.sneaker.shop.sneakershopfinal.service.impl;
 import java.util.List;
 import java.util.Optional;
 import kz.sneaker.shop.sneakershopfinal.domian.entities.Category;
-import kz.sneaker.shop.sneakershopfinal.domian.entities.Sneaker;
 import kz.sneaker.shop.sneakershopfinal.domian.repositories.CategoryRepository;
 import kz.sneaker.shop.sneakershopfinal.service.CategoryService;
 import lombok.RequiredArgsConstructor;

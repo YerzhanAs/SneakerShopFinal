@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="layout/main.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Sneaker Details</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" th:href="@{/css/sneaker-details.css}">
+</head>
+<body>
+<div layout:fragment="mainFragment">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img th:src="${sneaker.imageUrl}" alt="Sneaker Image" class="img-fluid">
+      </div>
+      <div class="col-md-6">
+        <div class="sneaker-details">
+          <h2 th:text="${sneaker.model}" class="sneaker-title">Sneaker Model</h2>
+          <h3 th:text="'$' + ${sneaker.price}" class="sneaker-price">Price</h3>
+          <p th:text="${sneaker.description}" class="sneaker-description">Description goes here</p>
+          <form th:action="@{/wishlist/add}" method="post">
+            <input type="hidden" name="sneakerId" th:value="${sneaker.id}" />
+            <a th:if="${not #lists.isEmpty(sneaker.wishlists)}" th:href="@{/wishlist/list}" class="btn btn-primary">My Wishlist</a>
+            <button sec:authorize="isAuthenticated()" type="submit" class="btn btn-primary">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <h4>Reviews</h4>
+        <div th:each="review : ${sneaker.reviews}">
+          <p th:text="${review.comment}">Review Text</p>
+          <small th:text="${review.user.email} + ' - ' + ${review.createdAt}">User and Time</small>
+          <hr/>
+        </div>
+        <div class="review-form" sec:authorize="isAuthenticated()">
+          <h4>Leave a Review</h4>
+          <form th:action="@{'/reviews/add/' + ${sneaker.id}}" method="post">
+            <textarea name="comment" placeholder="Enter your review here" required class="form-control"></textarea>
+            <input type="number" name="rating" min="1" max="5" placeholder="Rating (1-5)" required class="form-control mt-2"/>
+            <button type="submit" class="btn btn-success mt-2">Submit Review</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="layout/main.html">
+<head>
+  <meta charset="UTF-8">
+  <title>My Wishlist</title>
+  <link rel="stylesheet" th:href="@{/css/wishlist.css}">
+</head>
+<body>
+<div layout:fragment="mainFragment">
+  <div class="wishlist-container">
+    <h1>My Wishlist</h1>
+    <div class="wishlist-items" th:each="item : ${wishlists}">
+      <div class="wishlist-item">
+        <img th:src="${item.sneaker.imageUrl}" alt="Sneaker Image" class="wishlist-image" />
+        <div class="item-details">
+          <h2 th:text="${item.sneaker.model}" class="item-model">Model Name</h2>
+          <p th:text="'$' + ${item.sneaker.price}" class="item-price">Price</p>
+          <form th:action="@{'/wishlist/purchase/' + ${item.sneaker.id}}" method="post">
+            <button type="submit" class="btn btn-success">Buy Now</button>
+          </form>
+          <button class="btn-remove">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

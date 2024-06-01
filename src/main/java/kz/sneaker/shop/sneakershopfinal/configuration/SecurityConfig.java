@@ -1,8 +1,6 @@
 package kz.sneaker.shop.sneakershopfinal.configuration;
 
-import kz.sneaker.shop.sneakershopfinal.domian.repositories.UserRepository;
 import kz.sneaker.shop.sneakershopfinal.service.UserService;
-import kz.sneaker.shop.sneakershopfinal.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +9,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -44,7 +41,7 @@ public class SecurityConfig {
             .requestMatchers("/profile").authenticated()
             .requestMatchers("/css/**", "/js/**").permitAll()
             .requestMatchers("/users").hasAuthority("ROLE_ADMIN")
-            .anyRequest().permitAll()
+            .anyRequest().authenticated()
     ).formLogin(
         login -> login
             .loginProcessingUrl("/entering")

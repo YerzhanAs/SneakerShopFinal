@@ -3,10 +3,14 @@ package kz.sneaker.shop.sneakershopfinal.service.impl;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
+import kz.sneaker.shop.sneakershopfinal.domian.entities.Order;
 import kz.sneaker.shop.sneakershopfinal.domian.entities.Permission;
+import kz.sneaker.shop.sneakershopfinal.domian.entities.Sneaker;
 import kz.sneaker.shop.sneakershopfinal.domian.entities.User;
 import kz.sneaker.shop.sneakershopfinal.domian.repositories.PermissionRepository;
+import kz.sneaker.shop.sneakershopfinal.domian.repositories.SneakerRepository;
 import kz.sneaker.shop.sneakershopfinal.domian.repositories.UserRepository;
+import kz.sneaker.shop.sneakershopfinal.domian.repositories.WishlistRepository;
 import kz.sneaker.shop.sneakershopfinal.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -26,18 +30,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @Service
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
   private final PermissionRepository permissionRepository;
   private final PasswordEncoder passwordEncoder;
-  private  Path rootLocation;
-
-//  @Value("${file.avatar.viewPath}")
-//  private String viewPath;
-//
-//  @Value("${file.avatar.uploadPath}")
-//  private String uploadPath;
+  private Path rootLocation;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -48,15 +47,14 @@ public class UserServiceImpl implements UserService {
     throw new UsernameNotFoundException("User Not Found");
   }
 
+  @Override
   public User getCurrentUser() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (!(authentication instanceof AnonymousAuthenticationToken)) {
-      return (User) authentication.getPrincipal();
-    }
-    return null;
+    return userRepository.findByEmail(authentication.getName());
   }
 
   @Override
+  @Transactional
   public User saveUser(User user) {
     return userRepository.save(user);
   }
@@ -76,7 +74,6 @@ public class UserServiceImpl implements UserService {
         existingUser.getRoles().addAll(updatedUser.getRoles());
       }
 
-      // If you handle passwords and need to re-encrypt on update
       if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
         existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
       }
@@ -88,8 +85,9 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public void deleteUser(Long id) {
-     userRepository.deleteById(id);
+    userRepository.deleteById(id);
   }
 
   @Override
@@ -97,12 +95,9 @@ public class UserServiceImpl implements UserService {
     return userRepository.findById(id).orElse(null);
   }
 
-  @Override
-  public List<User> getAllUser() {
-    return userRepository.findAll();
-  }
 
   @Override
+  @Transactional
   public Boolean signUp(String email, String password, String repeatPassword, String fullName) {
     User existingUser = userRepository.findByEmail(email);
     if (existingUser == null) {
@@ -126,6 +121,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public Boolean updatePassword(String oldPassword, String newPassword, String repeatNewPassword) {
     User currentUser = getCurrentUser();
     if (currentUser != null) {
@@ -137,9 +133,9 @@ public class UserServiceImpl implements UserService {
         }
         return false;
       }
-      return null;
+      return false;
     }
-    return null;
+    return false;
   }
 
   @Override
@@ -151,22 +147,8 @@ public class UserServiceImpl implements UserService {
     }
   }
 
+  @Override
   @Transactional
-  public void changeUserRole(Long userId, Long roleId) {
-    Optional<User> userOpt = userRepository.findById(userId);
-    Optional<Permission> roleOpt = permissionRepository.findById(roleId);
-
-    if (userOpt.isPresent() && roleOpt.isPresent()) {
-      User user = userOpt.get();
-      Permission role = roleOpt.get();
-      user.getRoles().clear();
-      user.getRoles().add(role);
-      userRepository.save(user);
-    } else {
-      throw new IllegalArgumentException("Invalid user ID or role ID");
-    }
-  }
-
   public void updateUserAvatar(MultipartFile file) throws Exception {
     User currentUser = getCurrentUser();
     String picName = DigestUtils.sha1Hex("avatar_" + currentUser.getId() + "_!Picture") + ".jpg";
@@ -178,5 +160,4 @@ public class UserServiceImpl implements UserService {
     currentUser.setUserImage(picName);
     userRepository.save(currentUser);
   }
-
 }

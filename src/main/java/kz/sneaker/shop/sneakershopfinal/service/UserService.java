@@ -20,11 +20,9 @@ public interface UserService extends UserDetailsService {
 
   User getUserById(Long id);
 
-  List<User> getAllUser();
 
   List<User> searchUsers(String email, String fullName);
 
-  void changeUserRole(Long userId, Long roleId);
 
   void updateUserAvatar(MultipartFile file) throws Exception;
 

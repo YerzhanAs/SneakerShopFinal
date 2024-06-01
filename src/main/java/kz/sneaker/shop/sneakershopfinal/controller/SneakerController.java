@@ -3,11 +3,13 @@ package kz.sneaker.shop.sneakershopfinal.controller;
 import java.util.List;
 import kz.sneaker.shop.sneakershopfinal.domian.entities.Sneaker;
 import kz.sneaker.shop.sneakershopfinal.service.CategoryService;
+import kz.sneaker.shop.sneakershopfinal.service.ReviewService;
 import kz.sneaker.shop.sneakershopfinal.service.SneakerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,6 +21,8 @@ public class SneakerController {
   private final SneakerService sneakerService;
 
   private final CategoryService categoryService;
+
+  private final ReviewService reviewService;
 
   @GetMapping("/all")
   public String showSneakers(Model model) {
@@ -49,4 +53,11 @@ public class SneakerController {
     return "sneakers";
   }
 
+  @GetMapping("/details/{id}")
+  public String sneakerDetails(@PathVariable("id") Long id, Model model) {
+    Sneaker sneaker = sneakerService.getSneakerById(id);
+    model.addAttribute("sneaker", sneaker);
+    model.addAttribute("reviews", reviewService.getReviewsBySneakerId(id));
+    return "sneakerDetails";
+  }
 }

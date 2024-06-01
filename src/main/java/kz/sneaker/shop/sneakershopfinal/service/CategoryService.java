@@ -2,7 +2,6 @@ package kz.sneaker.shop.sneakershopfinal.service;
 
 import java.util.List;
 import kz.sneaker.shop.sneakershopfinal.domian.entities.Category;
-import kz.sneaker.shop.sneakershopfinal.domian.entities.Sneaker;
 
 public interface CategoryService {
 

@@ -10,7 +10,6 @@
   <div class="container mt-5">
     <h1>All Users</h1>
 
-    <!-- Search Form and Add New User Button -->
     <div class="d-flex justify-content-between mb-4">
       <form th:action="@{/admin/all}" method="get" class="form-inline">
         <input type="text" class="form-control mr-2" placeholder="Search by email" name="email" th:value="${param.email}">

@@ -2,7 +2,6 @@ package kz.sneaker.shop.sneakershopfinal.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import kz.sneaker.shop.sneakershopfinal.domian.entities.Permission;
 import kz.sneaker.shop.sneakershopfinal.domian.entities.User;
 import kz.sneaker.shop.sneakershopfinal.service.PermissionService;
@@ -137,6 +136,5 @@ public class UserController {
       return "redirect:/profile?error";
     }
   }
-
 
 }
